@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt");
 const cors = require("cors")
 const { authentication } = require("./Middlewares/authentication");
 const app = express();
-
+const dotenv = require("dotenv")
+dotenv.config();
+const PORT = process.env.PORT || 8080
 app.use(cors());
 
 app.use(express.json());
@@ -91,7 +93,7 @@ app.delete("todos/:id",authentication, async (req, res) => {
     
 });
 
-app.listen(8080, async () => {
+app.listen(PORT, async () => {
   try {
     await connection;
   } catch {
